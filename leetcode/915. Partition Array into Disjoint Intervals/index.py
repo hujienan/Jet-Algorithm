@@ -8,14 +8,15 @@ class Solution:
         max_left[0] = nums[0]
         for i in range(1, n):
             max_left[i] = max(nums[i], max_left[i-1])
-        
+
         min_right[-1] = nums[-1]
         for i in range(n-2, -1, -1):
             min_right[i] = min(min_right[i+1], nums[i])
-        
+
         for i in range(1, n):
             if max_left[i] <= min_right[i+1]:
                 return i + 1
+
     def partitionDisjoint2(self, nums: list[int]) -> int:
         # 2 rounds approach
         n = len(nums)
@@ -42,6 +43,7 @@ class Solution:
                 left_max = global_max
         return pos+1
 
+
 solution = Solution()
-res = solution.partitionDisjoint3([32,57,24,19,0,24,49,67,87,87])
+res = solution.partitionDisjoint3([32, 57, 24, 19, 0, 24, 49, 67, 87, 87])
 assert res == 7, "[32,57,24,19,0,24,49], [67,87,87]"

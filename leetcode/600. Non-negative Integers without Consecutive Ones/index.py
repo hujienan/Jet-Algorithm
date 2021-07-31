@@ -20,7 +20,8 @@ class Solution:
             else:
                 prev = False
             bits -= 1
-        return res+1    
+        return res+1
+
 
 solution = Solution()
 
@@ -33,4 +34,4 @@ assert solution.findIntegers(5) == 5, "The result should be 5"
 # 3 : 11
 # 4 : 100
 # 5 : 101
-# Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule. 
+# Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule.
