@@ -4,15 +4,19 @@ def merge(nums, low, mid, high):
     j = mid + 1
     for p in range(low, high+1):
         if i == mid + 1:
+            # left is done
             nums[p] = temp[j]
             j += 1
         elif j == high + 1:
+            # right is done
             nums[p] = temp[i]
             i += 1
         elif temp[i] > temp[j]:
+            # use left
             nums[p] = temp[j]
             j += 1
         else:
+            # use right
             nums[p] = temp[i]
             i += 1
 def sort(nums, low, high):

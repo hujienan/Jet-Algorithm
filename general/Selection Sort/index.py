@@ -9,5 +9,6 @@ def sort(nums):
             nums[min], nums[i] = nums[i], nums[min]
     return nums
 
+# select the min number, and move it to the left
 nums = [3,2,1,4]
 assert sort(nums) == [1,2,3,4], "Should be [1,2,3,4]"
