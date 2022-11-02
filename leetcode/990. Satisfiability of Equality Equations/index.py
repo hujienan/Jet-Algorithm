@@ -2,6 +2,27 @@ from collections import defaultdict
 from typing import List
 
 
+class UF:
+    def __init__(self, size):
+        self.parent = [-1] * size
+        for i in range(size):
+            self.parent[i] = i
+    
+    def find(self, p):
+        if self.parent[p] != p:
+            self.parent[p] = self.find(self.parent[p])
+        return self.parent[p]
+    
+    def union(self, p, q):
+        p = self.find(p)
+        q = self.find(q)
+        if p != q:
+            self.parent[q] = p
+    
+    def connected(self, p, q):
+        p = self.find(p)
+        q = self.find(q)
+        return p == q
 class Solution:
     def equationsPossible(self, equations: List[str]) -> bool:
         dic = defaultdict(list)
@@ -50,9 +71,21 @@ class Solution:
                     return False
         return True
 
-
+    def equationsPossible2(self, equations: List[str]) -> bool:
+        # union find way
+        uf = UF(26)
+        base = ord('a')
+        for e in equations:
+            if e[1] == '=':
+                uf.union(ord(e[0]) - base, ord(e[3]) - base)
+   
+        for e in equations:
+            if e[1] == '!':
+                if uf.connected(ord(e[0]) - base, ord(e[3]) - base):
+                    return False
+        return True
 
 solution = Solution()
 equations = ['a==b', 'b!=c', 'a==c']
 
-assert solution.equationsPossible1(equations) == False, "Should be false"
+assert solution.equationsPossible2(equations) == False, "Should be false"
