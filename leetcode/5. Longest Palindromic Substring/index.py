@@ -4,16 +4,21 @@ class Solution:
             while l >= 0 and r < len(s) and s[l] == s[r]:
                 l -= 1
                 r += 1
-            return s[l+1:r]
-        res = ''
+            return s[l + 1 : r]
+
+        res = ""
         for i in range(len(s)):
-            p1 = expand(i, i)
-            p2 = expand(i, i + 1)
-            p = p1 if len(p1) >= len(p2) else p2
-            if len(p) > len(res):
-                res = p
+            res = max(res, expand(i, i), expand(i, i + 1), key=len)
         return res
-        
+
+
 solution = Solution()
 s = "babad"
-assert solution.longestPalindrome(s) == 'bab', "Should be bab"
+assert solution.longestPalindrome(s) == "bab", "Should be bab"
+s = "cbbd"
+assert solution.longestPalindrome(s) == "bb", "Should be bb"
+s = "a"
+assert solution.longestPalindrome(s) == "a", "Should be a"
+s = "ac"
+assert solution.longestPalindrome(s) == "a", "Should be a"
+print("All test cases passed")
